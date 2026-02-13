@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Card 💌</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        font-family: 'Georgia', serif;
+        overflow-x: hidden;
+    }
+
+    .container {
+        position: relative;
+        text-align: center;
+        width: 90vw;
+        max-width: 400px;
+    }
+
+    .instruction {
+        margin-bottom: 15px;
+        color: #fff;
+        font-size: 16px;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0%,100% { opacity: 1; }
+        50% { opacity: 0.6; }
+    }
+
+    .envelope {
+        position: relative;
+        width: 100%;
+        padding-bottom: 66.66%; /* 3:2 ratio */
+        background: #f8c8dc;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: transform 0.5s ease;
+        overflow: hidden;
+    }
+
+    .envelope:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 50% solid transparent;
+        border-right: 50% solid transparent;
+        border-top: 50% solid #f4a6c1;
+        transform-origin: top;
+        transition: transform 0.6s ease;
+    }
+
+    .letter {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 90%;
+        max-height: 70vh;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        opacity: 0;
+        transition: all 0.6s ease;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .letter h2 {
+        color: #e75480;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .letter p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .signature {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #e75480;
+    }
+
+    .open .letter {
+        transform: translate(-50%, -120px);
+        opacity: 1;
+    }
+
+    .open .envelope:before {
+        transform: rotateX(180deg);
+    }
+
+    .heart-bg {
+        position: fixed;
+        font-size: 18px;
+        animation: float 6s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh); opacity: 0; }
+        10% { opacity: 1; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container" onclick="openEnvelope()">
+    <div class="instruction">💌 Tap the envelope 💌</div>
+
+    <div class="envelope"></div>
+
+    <div class="letter">
+        <h2>Happy Valentine’s Day</h2>
+
+        <p><strong>Dear Love,</strong></p>
+
+        <p>
+        I call you “Love” not because it’s romantic, but because that’s exactly what you bring into my life — genuine, pure, and comforting love in the form of friendship.
+        </p>
+
+        <p>
+        Thank you for being my constant person. For the laughs that make my stomach hurt, the deep talks that heal my heart, and the random moments that somehow turn into core memories. Life feels lighter and brighter with you around.
+        </p>
+
+        <p>
+        I appreciate your loyalty, your honesty, and the way you always show up. You’ve seen my dramatic side, my stressed side, and my “I don’t know what I’m doing” side — and you stayed anyway. That means more than you know.
+        </p>
+
+        <p>
+        Just a reminder that I’m always here for you too. Through breakdowns, glow-ups, academic stress, life decisions, and everything in between. We’re a team, no matter what.
+        </p>
+
+        <p class="signature">
+        With lots of love,<br>
+        MJ
+        </p>
+    </div>
+</div>
+
+<script>
+function openEnvelope() {
+    document.querySelector(".container").classList.toggle("open");
+}
+
+// floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart-bg");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
